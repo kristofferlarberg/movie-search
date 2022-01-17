@@ -24,7 +24,7 @@ function App() {
   useEffect(() => {
     //Gets the genre specifications
     async function getCategories() {
-      const response = await fetch("https://api.themoviedb.org/3/genre/movie/list?api_key=27cfec6c9eb8080cb7d8025ba420e2d7&language=en-US")
+      const response = await fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=${process.env.API_KEY}&language=en-US`)
       const data = await response.json();
       categories = {
         action: data.genres[0].id,
