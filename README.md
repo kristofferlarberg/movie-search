@@ -2,6 +2,12 @@
 
 A code assignment to make a searchable movie database.
 
+I put little focus on a11y during the process and instead focused on fetching and handling data as well as overall design.
+
+Todo:
+- Parts of `App.js` should be broken out into separate components (header, main, section, footer).
+- CSS should be structured better with less nesting and preferably divided into modules of some sort.
+
 The project uses the [The Movie Database API](https://www.themoviedb.org/) and was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

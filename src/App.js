@@ -1,13 +1,11 @@
 import { useEffect, useState } from "react";
-import MenuButton from "./menuButton.svg"
+import MenuButton from "./menuButton.svg";
 
 function App() {
   const [isOpen, setIsOpen] = useState(false);
   const [searchString, setSearchString] = useState("");
   const [results, setResults] = useState();
   const [expand, setExpand] = useState(false);
-  console.log("top", expand)
-
 
   const path = "https://image.tmdb.org/t/p/w500/";
   let categories;
@@ -16,9 +14,9 @@ function App() {
     setIsOpen(!isOpen);
   }
 
+  //This is not working properly
   function toggleExpand(id) {
     setExpand(!expand);
-    console.log("in func", expand)
     if (!expand) document.querySelector(id).style.height = "auto";
     if (expand) document.querySelector(id).style.height = "20vh";
   }
@@ -33,7 +31,7 @@ function App() {
         drama: data.genres[6].id,
         comedy: data.genres[3].id
       };
-      console.log(categories)
+      console.log(categories);
     }
     getCategories();
   }, [])
@@ -41,13 +39,11 @@ function App() {
   //Returns the movies based on search query
   async function handleSubmit(event) {
     event.preventDefault();
-    const response = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=27cfec6c9eb8080cb7d8025ba420e2d7&language=en-US&query=${searchString}&page=1&include_adult=false`)
+    const response = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=27cfec6c9eb8080cb7d8025ba420e2d7&language=en-US&query=${searchString}&page=1&include_adult=false`);
     const data = await response.json();
     const drama = [];
     const action = [];
-    const comedy = []
-
-    console.log(data.results)
+    const comedy = [];
 
     //Didn't manage to sort based on category-object fetched in useEffect, hard coded values instead.
     data.results.forEach((result) => {
@@ -56,14 +52,14 @@ function App() {
         if (id === 18) drama.push(result)
         if (id === 35) comedy.push(result)
       })
-    })
-    setResults({ drama, action, comedy })
-  }
+    });
+    setResults({ drama, action, comedy });
+  };
 
-  console.log("results done", results)
+  console.log("results done", results);
 
   return (
-    <div className="">
+    <div>
       <header>
         <div>
           Movie Finder
@@ -99,6 +95,9 @@ function App() {
           />
           <button>Search</button>
         </form>
+        {/* Conditional rendering for sections should be fixed so that they are hidden if no results.*/}
+        {/* Better solution for dynamically rendering sections needed.*/}
+        {/* Images should be adjusted to be centered in figure.*/}
         {results && <section>
           <h2>Drama</h2>
           <div className="container" id="drama">
@@ -154,6 +153,6 @@ function App() {
       </footer>
     </div>
   );
-}
+};
 
 export default App;

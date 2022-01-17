@@ -34,8 +34,8 @@ header div {
   justify-content: space-between;
   align-items: center;
   background-color: white;
-  border-radius: 50px;
-  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  padding: 0.5rem 1.5rem;
   font-size: 1.2rem;
   font-weight: 500;
 }
@@ -55,8 +55,8 @@ nav {
   flex-direction: column;
   background-color: white;
   border-radius: 25px;
-  margin: 0.5rem 0.2rem 0;
-  padding: 1.5rem 1rem;
+  margin-top: 0.5rem;
+  padding: 1.5rem 1.5rem;
   font-size: 1.2rem;
   font-weight: 500;
   animation-duration: 0.5s;
@@ -75,7 +75,7 @@ nav {
 @media (min-width: 768px) {
   nav {
     flex-direction: row;
-    padding: 0.5rem 1rem;
+    padding: 0rem 1rem 0.5rem;
   }
 }
 
@@ -157,6 +157,7 @@ figure {
   overflow: hidden;
 }
 
+/* Footer is not working correctly, should be pushed to bottom, not fixed on top. */
 footer {
   position: fixed;
   bottom: 0;
