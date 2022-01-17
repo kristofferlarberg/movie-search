@@ -3,10 +3,22 @@ import MenuButton from "./menuButton.svg"
 
 function App() {
   const [isOpen, setIsOpen] = useState(false);
+  const [searchString, setSearchString] = useState("");
+  const [results, setResults] = useState([]);
 
   function toggleMenu() {
     setIsOpen(!isOpen);
   }
+
+  async function handleSubmit(event) {
+    event.preventDefault();
+    const response = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=27cfec6c9eb8080cb7d8025ba420e2d7&language=en-US&query=${searchString}&page=1&include_adult=false`)
+    const data = await response.json();
+    setResults(data.results)
+  }
+
+  console.log(results);
+
   return (
     <div className="">
       <header>
@@ -31,12 +43,17 @@ function App() {
       </header>
       <main>
         <h1 className="hidden">Search for your movie</h1>
-        <form>
-          <label htmlFor="site-search" className="hidden">
+        <form onSubmit={handleSubmit}>
+          <label htmlFor="movie-search" className="hidden">
             Search for your movie:
           </label>
-          <input type="search" id="site-search" name="q"
-            aria-label="Search through site content" placeholder="Search movie, TV shows or actors" />
+          <input
+            type="search"
+            id="movie-search"
+            aria-label="Search through site content"
+            placeholder="Search movie, TV shows or actors"
+            onChange={(event) => setSearchString(event.target.value)}
+          />
           <button>Search</button>
         </form>
         <section>
