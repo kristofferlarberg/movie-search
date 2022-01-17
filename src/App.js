@@ -5,12 +5,22 @@ function App() {
   const [isOpen, setIsOpen] = useState(false);
   const [searchString, setSearchString] = useState("");
   const [results, setResults] = useState();
+  const [expand, setExpand] = useState(false);
+  console.log("top", expand)
+
 
   const path = "https://image.tmdb.org/t/p/w500/";
   let categories;
 
   function toggleMenu() {
     setIsOpen(!isOpen);
+  }
+
+  function toggleExpand(id) {
+    setExpand(!expand);
+    console.log("in func", expand)
+    if (!expand) document.querySelector(id).style.height = "auto";
+    if (expand) document.querySelector(id).style.height = "20vh";
   }
 
   useEffect(() => {
@@ -52,7 +62,6 @@ function App() {
 
   console.log("results done", results)
 
-
   return (
     <div className="">
       <header>
@@ -92,45 +101,58 @@ function App() {
         </form>
         {results && <section>
           <h2>Drama</h2>
-          <div className="container">
+          <div className="container" id="drama">
             {results.drama.map((result) => (
-              <>
-                {result.poster_path && <img src={path + result.poster_path}></img>}
+              <div>
+                {result.poster_path && <figure><img src={path + result.poster_path}></img></figure>}
                 {result.title && <p>{result.title}</p>}
                 {result.release_date && <p>{result.release_date.slice(0, 4)}</p>}
-              </>
+              </div>
             ))}
           </div>
+          <button onClick={() => toggleExpand("#drama")}>
+            {!expand ? "See more" : "See less"}
+          </button>
         </section>}
         {results && <section>
           <h2>Action</h2>
-          <div className="container">
+          <div className="container" id="action">
             {results.action.map((result) => (
-              <>
-                {result.poster_path && <img src={path + result.poster_path}></img>}
+              <div>
+                {result.poster_path && <figure>
+                  <img src={path + result.poster_path}></img>
+                </figure>}
                 {result.title && <p>{result.title}</p>}
                 {result.release_date && <p>{result.release_date.slice(0, 4)}</p>}
-              </>
+              </div>
             ))}
           </div>
+          <button onClick={() => toggleExpand("#action")}>
+            {!expand ? "See more" : "See less"}
+          </button>
         </section>}
         {results && <section>
           <h2>Comedy</h2>
-          <div className="container">
+          <div className="container" id="comedy">
             {results.comedy.map((result) => (
-              <>
-                {result.poster_path && <img src={path + result.poster_path}></img>}
+              <div>
+                {result.poster_path && <figure>
+                  <img src={path + result.poster_path}></img>
+                </figure>}
                 {result.title && <p>{result.title}</p>}
                 {result.release_date && <p>{result.release_date.slice(0, 4)}</p>}
-              </>
+              </div>
             ))}
           </div>
+          <button onClick={() => toggleExpand("#comedy")}>
+            {!expand ? "See more" : "See less"}
+          </button>
         </section>}
       </main>
       <footer>
         The Movie Finder
       </footer>
-    </div >
+    </div>
   );
 }
 
