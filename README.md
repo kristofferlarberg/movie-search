@@ -7,6 +7,9 @@ I put little focus on a11y during the process and instead focused on fetching an
 Todo:
 - Parts of `App.js` should be broken out into separate components (header, main, section, footer).
 - CSS should be structured better with less nesting and preferably divided into modules of some sort.
+- Fix conditional rendering of sections.
+- Fix expand button.
+- CSS adjustments
 
 The project uses the [The Movie Database API](https://www.themoviedb.org/) and was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
