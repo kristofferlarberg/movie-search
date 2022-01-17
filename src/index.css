@@ -14,16 +14,82 @@ body {
 }
 
 header {
+  display: flex;
+  flex-direction: column;
+  align-item: center;
+  background-color: transparent;
+  margin: 1rem;
+}
+
+@media (min-width: 768px) {
+  header {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+header div {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   background-color: white;
   border-radius: 50px;
   padding: 0.5rem 1rem;
-  margin: 1rem;
   font-size: 1.2rem;
   font-weight: 500;
 }
 
-header h1 {
-  margin: 0;
+header div button {
+  background-color: white;
+}
+
+@media (min-width: 768px) {
+  header div button {
+    display: none;
+  }
+}
+
+nav {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  border-radius: 25px;
+  margin: 0.5rem 0.2rem 0;
+  padding: 1.5rem 1rem;
+  font-size: 1.2rem;
+  font-weight: 500;
+  animation-duration: 0.5s;
+  animation-name: fadein;
+}
+
+@keyframes fadein {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@media (min-width: 768px) {
+  nav {
+    flex-direction: row;
+    padding: 0.5rem 1rem;
+  }
+}
+
+nav a {
+  margin: 0.5rem 0;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+@media (min-width: 768px) {
+  nav a {
+    margin: 0 0 0 1rem;
+    font-size: 1rem;
+  }
 }
 
 main {
@@ -112,6 +178,11 @@ button {
   -webkit-border-radius: 2px;
 }
 
+button img {
+  width: 2rem;
+  height: auto
+}
+
 form {
   display: flex;
   flex-direction: row;
@@ -125,6 +196,18 @@ input[type=search] {
   cursor: pointer;
   border-radius: 2px;
   -webkit-border-radius: 2px;
+}
+
+@media (min-width: 768px) {
+  .mobile {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .desktop {
+    display: none;
+  }
 }
 
 .hidden {
